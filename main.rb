@@ -1098,32 +1098,27 @@ sat_data = JSON.parse(%q|
 # puts sat_data["data"][1][9]
 # #Code below returns school code
 # puts sat_data["data"][1][8]
-# puts " what is the school code of the highschool you would like to know the sat scores of?"
-# user_input = gets.chomp
-def school_code_to_info(thing,school_code)
+def school_code_to_info(par1,school_code)
   
-thing["data"].each do |code|
+par1["data"].each do |code|
   if code[8]== school_code
     return{
-      school_string: code[9],
-      reading_string: code[11],
-      math_string: code[12],
-      writing_string: code[13]
+      school_string: code[9],reading_key: code[11],math_key: code[12],writing_key: code[13]
     }
     break
   end
 end
 end
 # puts school_code_to_info(sat_data["data"],"02M047")
-def run(thing)
-  puts " WHat is the school code?"
+def run(par2)
+  puts " What is the school code?"
   user_input = gets.chomp
   begin
-  sat_info = school_code_to_info(thing,user_input)
+  sat_info = school_code_to_info(par1,user_input)
   puts sat_info[:school_string]
-  puts sat_info[:reading_string] +" was the reading average for this school."
-  puts sat_info[:math_string] +" was the math average for this school."
-  puts sat_info[:writing_string]+" was the writing average for this school."
+  puts sat_info[:reading_key] +" was the reading average for this school."
+  puts sat_info[:math_key] +" was the math average for this school."
+  puts sat_info[:writing_key]+" was the writing average for this school."
   rescue
   puts "Please put a valid code"
   end
